@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMI - Família com uma Missão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4f46e5" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+<script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+    <script>
+      // Basic manifest content for PWA installation prompt
+      const manifest = {
+        "name": "FAMI - Família com uma Missão",
+        "short_name": "FAMI",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#f8fafc",
+        "theme_color": "#4f46e5",
+        "description": "Seu mural de anúncios da FAMI - Família com uma Missão (OBPC Regional Sorocaba).",
+        "icons": [
+          {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          },
+          {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const manifestURL = URL.createObjectURL(blob);
+      document.querySelector('link[rel="manifest"]').setAttribute('href', manifestURL);
+
+      // Simple service worker for basic PWA functionality (offline caching)
+      if ('serviceWorker' in navigator) {
+        const swContent = `
+          const CACHE_NAME = 'fami-obpc-cache-v1';
+          const urlsToCache = [
+            '/',
+            '/index.html'
+          ];
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  return cache.addAll(urlsToCache);
+                })
+            );
+          });
+          self.addEventListener('fetch', event => {
+            event.respondWith(
+              caches.match(event.request)
+                .then(response => {
+                  return response || fetch(event.request);
+                })
+            );
+          });
+        `;
+        const swBlob = new Blob([swContent], { type: 'application/javascript' });
+        const swUrl = URL.createObjectURL(swBlob);
+
+        navigator.serviceWorker.register(swUrl)
+          .then(registration => console.log('ServiceWorker registration successful with scope: ', registration.scope))
+          .catch(error => console.log('ServiceWorker registration failed: ', error));
+      }
+    </script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
