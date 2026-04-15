@@ -51,6 +51,7 @@ export interface Church {
     gallery: string[]; 
     socialInstagram?: string;
     socialFacebook?: string;
+    websiteUrl?: string;
     mapUrl?: string;
     
     // New Fields

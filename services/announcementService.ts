@@ -3,7 +3,7 @@ import { Announcement, Department, Church } from '../types';
 import { CHURCHES, DEPARTMENTS as INITIAL_DEPARTMENTS, CHURCH_DETAILS as INITIAL_CHURCH_DETAILS } from '../constants';
 
 const ANNOUNCEMENTS_KEY = 'obpc_announcements';
-const DEPARTMENTS_KEY = 'obpc_departments_v9'; // Updated key to force data refresh
+const DEPARTMENTS_KEY = 'obpc_departments_v10'; // Updated key to force data refresh
 const CHURCHES_KEY = 'obpc_churches';
 const ADMIN_TOKEN_KEY = 'obpc_admin_token';
 const ADMIN_PASSWORD = 'OBPC.Sorocaba'; // Senha atualizada

@@ -91,124 +91,146 @@ const DepartmentForm: React.FC<DepartmentFormProps> = ({ department, onClose }) 
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+        <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl overflow-hidden max-h-[95vh] flex flex-col w-full max-w-4xl border border-slate-100 dark:border-slate-800 transition-colors duration-500">
             {/* Header */}
-            <div className="bg-slate-50 p-4 border-b border-slate-200 flex justify-between items-center flex-shrink-0">
-                <h2 className="text-xl font-bold text-slate-800">Editar: {formData.acronym}</h2>
-                <button onClick={() => onClose(false)} className="text-slate-400 hover:text-slate-700 text-3xl leading-none">&times;</button>
+            <div className="bg-slate-50 dark:bg-slate-950 p-6 md:p-8 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center flex-shrink-0">
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-8 bg-indigo-600 dark:bg-brand-gold rounded-full"></div>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-800 dark:text-white tracking-tighter">Editar: {formData.acronym}</h2>
+                </div>
+                <button onClick={() => onClose(false)} className="text-slate-400 hover:text-slate-700 dark:hover:text-white bg-white dark:bg-slate-900 p-2 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-slate-200 bg-white flex-shrink-0">
+            <div className="flex border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex-shrink-0 px-4 md:px-8 overflow-x-auto hide-scrollbar">
                 <button 
                     onClick={() => setActiveTab('info')}
-                    className={`flex-1 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'info' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+                    className={`whitespace-nowrap px-6 py-4 text-[10px] font-black uppercase tracking-widest border-b-4 transition-all ${activeTab === 'info' ? 'border-indigo-600 dark:border-brand-gold text-indigo-600 dark:text-brand-gold' : 'border-transparent text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300'}`}
                 >
                     Informações Gerais
                 </button>
                 <button 
                     onClick={() => setActiveTab('team')}
-                    className={`flex-1 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'team' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+                    className={`whitespace-nowrap px-6 py-4 text-[10px] font-black uppercase tracking-widest border-b-4 transition-all ${activeTab === 'team' ? 'border-indigo-600 dark:border-brand-gold text-indigo-600 dark:text-brand-gold' : 'border-transparent text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300'}`}
                 >
                     Equipe e Liderança
                 </button>
                 <button 
                     onClick={() => setActiveTab('gallery')}
-                    className={`flex-1 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'gallery' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+                    className={`whitespace-nowrap px-6 py-4 text-[10px] font-black uppercase tracking-widest border-b-4 transition-all ${activeTab === 'gallery' ? 'border-indigo-600 dark:border-brand-gold text-indigo-600 dark:text-brand-gold' : 'border-transparent text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300'}`}
                 >
                     Galeria de Fotos
                 </button>
             </div>
 
             {/* Content Scrollable Area */}
-            <div className="p-6 overflow-y-auto flex-grow">
-                <form id="deptForm" onSubmit={handleSubmit} className="space-y-6">
+            <div className="p-6 md:p-10 overflow-y-auto flex-grow bg-slate-50/30 dark:bg-slate-950/30">
+                <form id="deptForm" onSubmit={handleSubmit} className="space-y-10">
                     
                     {activeTab === 'info' && (
-                        <div className="space-y-4 animate-fade-in">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700">Nome do Departamento</label>
-                                <input type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" />
-                            </div>
-                             <div>
-                                <label className="block text-sm font-medium text-slate-700">Sigla</label>
-                                <input type="text" name="acronym" value={formData.acronym} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700">Descrição Curta</label>
-                                <textarea name="description" rows={2} value={formData.description} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" />
+                        <div className="space-y-8 animate-fade-in">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div className="md:col-span-2">
+                                    <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Nome do Ministério</label>
+                                    <input type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus:border-indigo-500 dark:focus:border-brand-gold focus:ring-indigo-500 dark:focus:ring-brand-gold py-3 px-4 font-bold text-slate-800 dark:text-white transition-all" />
+                                </div>
+                                 <div className="md:col-span-1">
+                                    <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Sigla</label>
+                                    <input type="text" name="acronym" value={formData.acronym} onChange={handleChange} className="mt-1 block w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus:border-indigo-500 dark:focus:border-brand-gold focus:ring-indigo-500 dark:focus:ring-brand-gold py-3 px-4 font-black text-slate-800 dark:text-white transition-all" />
+                                </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700">Trabalhos Realizados (Texto Longo)</label>
-                                <textarea name="works" rows={5} value={formData.works} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border" />
+                                <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Descrição Curta</label>
+                                <textarea name="description" rows={2} value={formData.description} onChange={handleChange} className="mt-1 block w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus:border-indigo-500 dark:focus:border-brand-gold focus:ring-indigo-500 dark:focus:ring-brand-gold py-3 px-4 font-medium text-slate-700 dark:text-slate-300 transition-all" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700">URL do Banner Principal</label>
-                                <input type="text" name="bannerUrl" value={formData.bannerUrl} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-xs text-slate-500" />
-                                <img src={formData.bannerUrl} alt="Banner" className="mt-2 h-24 w-full object-cover rounded" />
+                                <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Trabalhos Realizados (Texto Longo)</label>
+                                <textarea name="works" rows={5} value={formData.works} onChange={handleChange} className="mt-1 block w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus:border-indigo-500 dark:focus:border-brand-gold focus:ring-indigo-500 dark:focus:ring-brand-gold py-3 px-4 font-medium text-slate-700 dark:text-slate-300 transition-all" />
+                            </div>
+                            <div>
+                                <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Banner Principal</label>
+                                <div className="mt-2 space-y-4">
+                                  <input type="text" name="bannerUrl" value={formData.bannerUrl} onChange={handleChange} className="block w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm focus:border-indigo-500 dark:focus:border-brand-gold focus:ring-indigo-500 dark:focus:ring-brand-gold py-3 px-4 font-mono text-[10px] text-slate-400 dark:text-slate-500" />
+                                  <div className="relative h-40 w-full overflow-hidden rounded-3xl shadow-lg border-4 border-white dark:border-slate-800">
+                                    <img src={formData.bannerUrl} alt="Banner Preview" className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                      <p className="text-white text-[10px] font-black uppercase tracking-widest">Pré-visualização do Banner</p>
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
                         </div>
                     )}
 
                     {activeTab === 'team' && (
-                        <div className="space-y-6 animate-fade-in">
+                        <div className="space-y-8 animate-fade-in">
                             <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-medium text-slate-800">Membros da Equipe</h3>
-                                <button type="button" onClick={handleAddTeamMember} className="text-sm bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">
+                                <h3 className="text-xl font-black text-slate-800 dark:text-white tracking-tight">Membros da Equipe</h3>
+                                <button 
+                                  type="button" 
+                                  onClick={handleAddTeamMember} 
+                                  className="text-[10px] font-black uppercase tracking-widest bg-indigo-600 dark:bg-brand-gold text-white dark:text-slate-950 px-6 py-3 rounded-2xl hover:bg-indigo-700 dark:hover:bg-brand-amber transition-all shadow-lg hover:shadow-indigo-200 dark:hover:shadow-brand-gold/20"
+                                >
                                     + Adicionar Membro
                                 </button>
                             </div>
                             
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 gap-6">
                                 {formData.team.map((member, index) => (
-                                    <div key={index} className="flex flex-col md:flex-row gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200 items-start">
-                                        <div className="flex-shrink-0 flex flex-col items-center space-y-2">
-                                            <img src={member.photoUrl} alt={member.name} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm" />
-                                            <label className="cursor-pointer text-xs text-indigo-600 font-medium hover:underline">
+                                    <div key={index} className="flex flex-col md:flex-row gap-8 bg-white dark:bg-slate-900 p-6 md:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 items-start relative group hover:shadow-xl transition-all duration-500">
+                                        <div className="flex-shrink-0 flex flex-col items-center space-y-4">
+                                            <div className={`w-24 h-24 md:w-32 md:h-32 rounded-full p-1.5 bg-gradient-to-br ${department.color} shadow-lg`}>
+                                              <img src={member.photoUrl} alt={member.name} className="w-full h-full rounded-full object-cover border-4 border-white dark:border-slate-800" />
+                                            </div>
+                                            <label className="cursor-pointer text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-brand-gold hover:text-indigo-800 dark:hover:text-brand-amber transition-colors bg-indigo-50 dark:bg-slate-800 px-4 py-2 rounded-xl">
                                                 Alterar Foto
                                                 <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleTeamPhotoUpload(index, e.target.files[0])} />
                                             </label>
                                         </div>
-                                        <div className="flex-grow w-full space-y-3">
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div className="flex-grow w-full space-y-6">
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div>
-                                                    <label className="text-xs text-slate-500">Nome</label>
+                                                    <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Nome Completo</label>
                                                     <input 
                                                         type="text" 
                                                         value={member.name} 
                                                         onChange={(e) => handleTeamChange(index, 'name', e.target.value)}
-                                                        className="w-full rounded border-gray-300 p-1.5 text-sm border focus:ring-indigo-500 focus:border-indigo-500"
+                                                        className="w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 font-bold text-slate-800 dark:text-white border focus:ring-indigo-500 dark:focus:ring-brand-gold focus:border-indigo-500 dark:focus:border-brand-gold transition-all"
                                                     />
                                                 </div>
                                                 <div>
-                                                    <label className="text-xs text-slate-500">Cargo/Função</label>
+                                                    <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Cargo / Função</label>
                                                     <input 
                                                         type="text" 
                                                         value={member.role} 
                                                         onChange={(e) => handleTeamChange(index, 'role', e.target.value)}
-                                                        className="w-full rounded border-gray-300 p-1.5 text-sm border focus:ring-indigo-500 focus:border-indigo-500"
+                                                        className="w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 font-black text-indigo-600 dark:text-brand-gold border focus:ring-indigo-500 dark:focus:ring-brand-gold focus:border-indigo-500 dark:focus:border-brand-gold transition-all uppercase text-xs tracking-widest"
                                                     />
                                                 </div>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-slate-500">Biografia e Família</label>
+                                                <label className="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Biografia e Família</label>
                                                 <textarea 
                                                     value={member.familyBiography || ''} 
                                                     onChange={(e) => handleTeamChange(index, 'familyBiography', e.target.value)}
                                                     placeholder="Descreva a biografia, família e trajetória ministerial..."
                                                     rows={3}
-                                                    className="w-full rounded border-gray-300 p-1.5 text-sm border focus:ring-indigo-500 focus:border-indigo-500"
+                                                    className="w-full rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 text-sm font-medium text-slate-600 dark:text-slate-400 border focus:ring-indigo-500 dark:focus:ring-brand-gold focus:border-indigo-500 dark:focus:border-brand-gold transition-all"
                                                 />
                                             </div>
                                         </div>
                                         <button 
                                             type="button" 
                                             onClick={() => handleRemoveTeamMember(index)}
-                                            className="text-red-500 hover:text-red-700 p-2 self-start md:self-center"
+                                            className="absolute top-6 right-6 text-slate-300 dark:text-slate-600 hover:text-red-500 dark:hover:text-red-500 p-2 transition-colors"
                                             title="Remover Membro"
                                         >
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clipRule="evenodd" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
                                         </button>
                                     </div>
@@ -218,35 +240,44 @@ const DepartmentForm: React.FC<DepartmentFormProps> = ({ department, onClose }) 
                     )}
 
                     {activeTab === 'gallery' && (
-                        <div className="space-y-6 animate-fade-in">
+                        <div className="space-y-8 animate-fade-in">
                              <div className="flex justify-between items-center">
-                                <h3 className="text-lg font-medium text-slate-800">Fotos de Eventos</h3>
-                                <label className="cursor-pointer text-sm bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 flex items-center space-x-1">
-                                    <span>+ Upload Foto</span>
+                                <h3 className="text-xl font-black text-slate-800 dark:text-white tracking-tight">Galeria de Eventos</h3>
+                                <label className="cursor-pointer text-[10px] font-black uppercase tracking-widest bg-indigo-600 dark:bg-brand-gold text-white dark:text-slate-950 px-6 py-3 rounded-2xl hover:bg-indigo-700 dark:hover:bg-brand-amber transition-all shadow-lg hover:shadow-indigo-200 dark:hover:shadow-brand-gold/20 flex items-center space-x-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>Upload Foto</span>
                                     <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleAddGalleryPhoto(e.target.files[0])} />
                                 </label>
                             </div>
                             
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                                 {formData.eventPhotos.map((photoUrl, index) => (
-                                    <div key={index} className="relative group rounded-lg overflow-hidden shadow-sm border border-slate-200 bg-slate-50 aspect-video">
+                                    <div key={index} className="relative group rounded-3xl overflow-hidden shadow-md border-4 border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-800 aspect-video transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
                                         <img src={photoUrl} alt="Evento" className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                                        <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
                                             <button 
                                                 type="button"
                                                 onClick={() => handleRemoveGalleryPhoto(index)}
-                                                className="bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity transform hover:scale-110"
+                                                className="bg-red-600 text-white p-3 rounded-2xl transition-all transform hover:scale-110 shadow-xl"
+                                                title="Remover Foto"
                                             >
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clipRule="evenodd" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>
                                             </button>
                                         </div>
                                     </div>
                                 ))}
                                 {formData.eventPhotos.length === 0 && (
-                                    <div className="col-span-full text-center py-8 text-slate-400 bg-slate-50 rounded border border-dashed border-slate-300">
-                                        Nenhuma foto na galeria.
+                                    <div className="col-span-full text-center py-16 text-slate-400 dark:text-slate-600 bg-white dark:bg-slate-900 rounded-[2rem] border-2 border-dashed border-slate-200 dark:border-slate-800">
+                                        <div className="bg-slate-50 dark:bg-slate-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-slate-200 dark:text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                          </svg>
+                                        </div>
+                                        <p className="font-bold uppercase tracking-widest text-xs">Nenhuma foto na galeria</p>
                                     </div>
                                 )}
                             </div>
@@ -256,12 +287,23 @@ const DepartmentForm: React.FC<DepartmentFormProps> = ({ department, onClose }) 
             </div>
 
             {/* Footer Actions */}
-            <div className="bg-slate-50 p-4 border-t border-slate-200 flex justify-end space-x-3 flex-shrink-0">
-                <button type="button" onClick={() => onClose(false)} className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50">
+            <div className="bg-white dark:bg-slate-900 p-6 md:p-8 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 flex-shrink-0">
+                <button 
+                  type="button" 
+                  onClick={() => onClose(false)} 
+                  className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 rounded-2xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+                >
                     Cancelar
                 </button>
-                <button type="submit" form="deptForm" disabled={isLoading} className="px-6 py-2 text-sm font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 disabled:bg-indigo-300 min-w-[120px]">
-                    {isLoading ? 'Salvando...' : 'Salvar Alterações'}
+                <button 
+                  type="submit" 
+                  form="deptForm" 
+                  disabled={isLoading} 
+                  className="px-10 py-4 text-[10px] font-black uppercase tracking-widest text-white dark:text-slate-950 bg-indigo-600 dark:bg-brand-gold rounded-2xl hover:bg-indigo-700 dark:hover:bg-brand-amber disabled:bg-indigo-300 dark:disabled:bg-slate-800 transition-all shadow-lg hover:shadow-indigo-200 dark:hover:shadow-brand-gold/20 flex items-center justify-center min-w-[180px]"
+                >
+                    {isLoading ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white dark:border-slate-950"></div>
+                    ) : 'Salvar Alterações'}
                 </button>
             </div>
         </div>

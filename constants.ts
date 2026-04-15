@@ -269,14 +269,14 @@ export const DEPARTMENTS: Department[] = [
         id: 'fami',
         acronym: 'MINISTÉRIO FAMI',
         name: 'Coordenação Geral FAMI - Família com uma Missão',
-        description: 'Integração de departamentos e fomento da visão missionária.',
+        description: 'Integração de ministérios e fomento da visão missionária.',
         bannerUrl: 'https://picsum.photos/seed/fami/800/400',
         team: [
             { 
                 name: 'Pr. Fernando Borges', 
                 role: 'Coordenador - Ministério FAMI', 
                 photoUrl: 'https://picsum.photos/seed/fernandoborges/200/200',
-                familyBiography: 'Líder dinâmico, Pr. Fernando coordena as atividades do Ministério FAMI, promovendo a união entre os departamentos. Sua família está sempre envolvida na obra.'
+                familyBiography: 'Líder dinâmico, Pr. Fernando coordena as atividades do Ministério FAMI, promovendo a união entre os ministérios. Sua família está sempre envolvida na obra.'
             },
             {
                 name: 'Vice-Coordenador',
@@ -294,7 +294,7 @@ export const DEPARTMENTS: Department[] = [
                 name: 'Tesoureiro(a)',
                 role: 'Tesouraria',
                 photoUrl: 'https://picsum.photos/seed/famitreasurer/200/200',
-                familyBiography: 'Gestão financeira, controle de ofertas e investimentos nos projetos do departamento.'
+                familyBiography: 'Gestão financeira, controle de ofertas e investimentos nos projetos do ministério.'
             },
             {
                 name: 'Líder de Mídia',
@@ -303,7 +303,7 @@ export const DEPARTMENTS: Department[] = [
                 familyBiography: 'Responsável pela divulgação, redes sociais e cobertura dos eventos da FAMI.'
             }
         ],
-        works: 'Organização de grandes cruzadas evangelísticas, suporte aos líderes de departamentos e eventos de integração regional.',
+        works: 'Organização de grandes cruzadas evangelísticas, suporte aos líderes de ministérios e eventos de integração regional.',
         eventPhotos: [
             'https://picsum.photos/seed/fami1/400/300',
             'https://picsum.photos/seed/fami2/400/300',
