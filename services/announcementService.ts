@@ -6,7 +6,7 @@ const ANNOUNCEMENTS_KEY = 'obpc_announcements';
 const DEPARTMENTS_KEY = 'obpc_departments_v10'; // Updated key to force data refresh
 const CHURCHES_KEY = 'obpc_churches';
 const ADMIN_TOKEN_KEY = 'obpc_admin_token';
-const ADMIN_PASSWORD = 'OBPC.Sorocaba'; // Senha atualizada
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'OBPC.Sorocaba'; // Senha atualizada via env var
 
 export const ADMIN_STATUS_CHANGED = 'OBPC_ADMIN_STATUS_CHANGED';
 
